@@ -1,0 +1,97 @@
+HTTP GET - https://134.0.111.91:34721/users/all
+      Получить данные всех пользователей в виде списка
+
+      Вид выходных данных:
+          [
+              {
+                  "mail": "sasha.izmyloff@mail.ru",
+                  "username": "Alexander1248",
+                  "permission": "admin"
+              },
+              {
+                  "mail": "mail",
+                  "username": "Alex",
+                  "permission": "user"
+              }
+          ]
+
+
+HTTP GET - http://134.0.111.91:34721/users/data/{username}
+    Получить данные о пользователе
+
+    Вид выходных данных:
+        {
+            "mail": "mail",
+            "username": "Alex",
+            "permission": "user"
+        }
+
+
+HTTP GET - http://134.0.111.91:34721/users/token/{username}?password={password}
+    Получить токен пользователя для текущей сессии
+
+    Вид выходных данных:
+        D7g+o3xciw3p2t7v02Fy1syJU2OYUSAYQTAX3y1kxaw=
+
+
+HTTP POST - http://134.0.111.91:34721/users/reg?username={username}&mail={mail}&password={password}
+    Зарегистрировать пользователя
+
+    Если успешное выполнение:
+        User added!
+    Если пользователь с таким именем уже есть:
+        User with this username already exists!
+    Если пользователь с такой почтой уже есть:
+        User with this mail already exists!
+
+
+HTTP DELETE - http://134.0.111.91:34721/users/delete/{username}?password={password}
+    Удалить пользователя
+
+    Если успешное выполнение:
+        User deleted!
+    Если пароль неверен:
+        Wrong password!
+    Если такого пользователя нет:
+        User not exists!
+
+
+HTTP GET - http://134.0.111.91:34721/stosys/{token}/files
+    Получить список файлов пользователя
+
+    Вид выходных данных:
+        [
+            "data.txt",
+            "file.png",
+            "module.db"
+        ]
+
+
+HTTP POST - http://134.0.111.91:34721/stosys/{token}/files/{file}
+    Сохранить файл в личное пространство пользователя
+    !Внимание! Данные в бинарном виде передаются в теле запроса
+
+    Если успешное выполнение:
+        Data saved!
+    Если токен неверен(может быть такого пользователя нет или токен не обновляли в новой сессии):
+        Incorrect token!
+    Если возникла ошибка в процессе сохранения:
+        Database save error!
+
+
+HTTP GET - http://134.0.111.91:34721/stosys/{token}/files/{file}
+    Загрузить файл из личного пространства пользователя
+
+    Вид выходных данных:
+        rt78795uhjgu4487ujjrhkpoo9390-l;lekjf766whdh r4ht7b 7rusikcvjv (Данные в бинарном виде)
+
+
+HTTP DELETE - http://134.0.111.91:34721/stosys/{token}/files/{file}
+    Удалить файл из личного пространства пользователя
+
+    Если успешное выполнение:
+        Data deleted!
+    Если токен неверен(может быть такого пользователя нет или токен не обновляли в новой сессии):
+        Incorrect token!
+    Если возникла ошибка в процессе удаления:
+        Database deleting error!

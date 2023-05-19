@@ -1,0 +1,36 @@
+server:
+  port: 34721
+
+  ssl:
+    enabled: true
+    keyStoreType: PKCS12
+    keyStore: C:\Projects\JavaProjects\storageserver\keys\StoSysHTTPS.p12
+    keyAlias: StosysServerEncryption
+    keyStorePassword: StoSysHTTPS213455
+
+
+spring:
+  datasource:
+    url: jdbc:h2:file:C:\Projects\JavaProjects\storageserver\db\system
+    username: Alexander1248
+    password: StoSys213455
+    driverClassName: org.h2.Driver
+
+  jpa:
+      showSql: false
+      database-platform: org.hibernate.dialect.H2Dialect
+      openInView: false
+      hibernate:
+        ddlAuto: update
+
+  h2:
+    console:
+      path: /db/console
+      enabled: true
+
+
+
+
+
+stosys:
+  root: C:\Projects\JavaProjects\storageserver\db\stosys
